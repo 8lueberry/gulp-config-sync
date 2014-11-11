@@ -1,0 +1,12 @@
+{
+  "name": "name1",
+  "version": "version1",
+  "description": "description1",
+  "main": "main1",
+  "keywords": [
+    "keyword1",
+    "keyword2"
+  ],
+  "author": "author1",
+  "license": "license1"
+}

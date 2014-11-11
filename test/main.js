@@ -1,0 +1,84 @@
+var assert = require('stream-assert');
+var gulp = require('gulp');
+var File = gulp.File;
+var plugin = require('../');
+var path = require('path');
+var should = require('should');
+
+var fixtures = function (glob) {
+  return path.join(__dirname, 'fixtures', glob);
+}
+
+describe('gulp-config-sync', function() {
+  describe('plugin', function() {
+
+    it('should emit error on streamed file', function(done) {
+      gulp.src(
+        path.join(__dirname, 'fixtures', 'config.json'),
+        { buffer: false }
+      )
+        .pipe(plugin())
+        .on('error', function (err) {
+          err.message.should.eql('Streaming not supported');
+          done();
+        });
+    });
+
+    it('should emit error when package.json not found', function(done) {
+      gulp.src(path.join(__dirname, 'fixtures', 'config.json'))
+        .pipe(plugin({ package: 'i-dont-exist.json', }))
+        .on('error', function (err) {
+          done();
+        });
+    });
+
+    it('should sync config file', function(done) {
+      gulp.src(path.join(__dirname, 'fixtures', 'config.json'))
+        .pipe(plugin({ package: 'test/fixtures/package.json', }))
+        .pipe(assert.first(function (d) {
+          var config = JSON.parse(d.contents.toString());
+          config.should.have.property('name', 'name1');
+          config.should.have.property('description', 'description1');
+          config.should.have.property('version', 'version1');
+          config.should.have.property('keywords').with.lengthOf(2);
+          config.keywords[0].should.equal('keyword1');
+          config.keywords[1].should.equal('keyword2');
+
+        }))
+        .pipe(assert.end(done));
+    });
+
+    it('should sync empty config file', function(done) {
+      gulp.src(path.join(__dirname, 'fixtures', 'config-empty.json'))
+        .pipe(plugin({ package: 'test/fixtures/package.json', }))
+        .pipe(assert.first(function (d) {
+          var config = JSON.parse(d.contents.toString());
+          config.should.have.property('name', 'name1');
+          config.should.have.property('description', 'description1');
+          config.should.have.property('version', 'version1');
+          config.should.have.property('keywords').with.lengthOf(2);
+          config.keywords[0].should.equal('keyword1');
+          config.keywords[1].should.equal('keyword2');
+
+        }))
+        .pipe(assert.end(done));
+    });
+
+    it('should create non existing file', function(done) {
+      gulp.src(path.join(__dirname, 'fixtures', 'i-dont-exist.json'))
+        .pipe(plugin({ package: 'test/fixtures/package.json', }))
+        .pipe(assert.first(function (d) {
+          var config = JSON.parse(d.contents.toString());
+          config.should.have.property('name', 'name1');
+          config.should.have.property('description', 'description1');
+          config.should.have.property('version', 'version1');
+          config.should.have.property('keywords').with.lengthOf(2);
+          config.keywords[0].should.equal('keyword1');
+          config.keywords[1].should.equal('keyword2');
+
+        }))
+        .pipe(assert.end(done));
+    });
+
+  });
+});

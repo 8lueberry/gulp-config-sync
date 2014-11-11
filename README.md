@@ -1,6 +1,6 @@
 #gulp-config-sync
 
-[![NPM version](https://badge.fury.io/js/gulp-config-sync.svg)](http://badge.fury.io/js/gulp-config-sync)
+[![NPM version](https://badge.fury.io/js/gulp-config-sync.svg)](http://badge.fury.io/js/gulp-config-sync) [![Build Status](https://travis-ci.org/danlevan/gulp-config-sync.svg?branch=master)](https://travis-ci.org/danlevan/gulp-config-sync)
 
 > Synchronize version, name, description, keywords... in each config file (package.json, bower.json, component.js...).
 

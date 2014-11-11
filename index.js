@@ -20,6 +20,7 @@ var defaultOptions = {
     'description',
     'keywords',
   ],
+  space: '  ',
 };
 
 /**
@@ -73,7 +74,7 @@ function syncConfig(file, opts, cb) {
       configObj[field] = packageObj[field];
     });
 
-    return JSON.stringify(configObj);
+    return JSON.stringify(configObj, null, opts.space);
   })
 
   // return the new buffer

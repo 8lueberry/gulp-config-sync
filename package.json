@@ -1,0 +1,33 @@
+{
+  "name": "gulp-sync-config-bower",
+  "version": "0.0.1",
+  "description": "Synchronize bower.json using package.json as the source.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danlevan/gulp-sync-config.git"
+  },
+  "keywords": [
+    "gulp",
+    "gulpplugin",
+    "config",
+    "synchronize",
+    "package.json",
+    "bower"
+  ],
+  "author": "Dan Le Van",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danlevan/gulp-sync-config-bower/issues"
+  },
+  "homepage": "https://github.com/danlevan/gulp-sync-config-bower",
+  "devDependencies": {},
+  "dependencies": {
+    "gulp-util": "^3.0.1",
+    "lodash": "^2.4.1",
+    "through2": "^0.6.3"
+  }
+}

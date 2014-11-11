@@ -7,7 +7,7 @@ var PluginError = gutil.PluginError;
 var Q = require('kew');
 
 // consts
-const PLUGIN_NAME = 'gulp-config-bower';
+const PLUGIN_NAME = 'gulp-config-sync';
 
 /**
  * Default options
@@ -59,7 +59,15 @@ function syncConfig(file, opts, cb) {
 
   // replace fields in bower.json
   .then(function(packageObj) {
-    var configObj = JSON.parse(String(file.contents));
+
+    var configObj = {};
+
+    try {
+      configObj = JSON.parse(String(file.contents));
+    }
+    catch (err) {
+      throw 'Invalid config file: Not a valid JSON';
+    }
 
     _.forEach(opts.fields, function(field) {
       configObj[field] = packageObj[field];

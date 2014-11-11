@@ -32,6 +32,15 @@ describe('gulp-config-sync', function() {
         });
     });
 
+    it('should emit error when config is not a valid JSON', function(done) {
+      gulp.src(path.join(__dirname, 'fixtures', 'config-invalid.json'))
+        .pipe(plugin({ package: 'test/fixtures/package.json', }))
+        .on('error', function (err) {
+          err.message.should.eql('Invalid config file: Not a valid JSON');
+          done();
+        });
+    });
+
     it('should sync config file', function(done) {
       gulp.src(path.join(__dirname, 'fixtures', 'config.json'))
         .pipe(plugin({ package: 'test/fixtures/package.json', }))

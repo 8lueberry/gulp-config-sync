@@ -13,7 +13,7 @@ const PLUGIN_NAME = 'gulp-config-sync';
  * Default options
  */
 var defaultOptions = {
-  package: 'package.json',
+  src: 'package.json',
   fields: [
     'name',
     'version',
@@ -52,14 +52,14 @@ function plugin(options) {
 function syncConfig(file, opts, cb) {
   Q.resolve()
 
-  // get the package.json
+  // get the source.json
   .then(function() {
-    var src = fs.readFileSync(opts.package);
+    var src = fs.readFileSync(opts.src);
     return JSON.parse(src);
   })
 
   // replace fields in bower.json
-  .then(function(packageObj) {
+  .then(function(srcObj) {
 
     var configObj = {};
 
@@ -71,7 +71,7 @@ function syncConfig(file, opts, cb) {
     }
 
     _.forEach(opts.fields, function(field) {
-      configObj[field] = packageObj[field];
+      configObj[field] = srcObj[field];
     });
 
     return JSON.stringify(configObj, null, opts.space);

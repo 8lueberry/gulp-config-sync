@@ -1,7 +1,7 @@
 #gulp-config-sync
 [![NPM version](https://badge.fury.io/js/gulp-config-sync.svg)](http://badge.fury.io/js/gulp-config-sync)
 
-> Synchronize configs like bower.json using package.json as the source.
+> Synchronize config fields among package configs (package.json, bower.json, component.js...)
 
 ## Gulp
 
@@ -42,9 +42,9 @@ gulp.task('default', ['sync']);
 
 ## Options
 
-- `package`
+- `src`
   - Default `package.json`
-  - The path to the package.json file
+  - The path to the source.json file
 
 - `fields`
   - Default `[
@@ -63,7 +63,7 @@ gulp.task('default', ['sync']);
 
 ```javascript
 var options = {
-  package: 'source.json',
+  src: 'source.json',
   fields: [
     'name',
     'version',

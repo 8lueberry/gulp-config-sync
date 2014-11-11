@@ -24,9 +24,9 @@ describe('gulp-config-sync', function() {
         });
     });
 
-    it('should emit error when package.json not found', function(done) {
+    it('should emit error when source.json not found', function(done) {
       gulp.src(path.join(__dirname, 'fixtures', 'config.json'))
-        .pipe(plugin({ package: 'i-dont-exist.json', }))
+        .pipe(plugin({ src: 'i-dont-exist.json', }))
         .on('error', function (err) {
           done();
         });
@@ -34,7 +34,7 @@ describe('gulp-config-sync', function() {
 
     it('should emit error when config is not a valid JSON', function(done) {
       gulp.src(path.join(__dirname, 'fixtures', 'config-invalid.json'))
-        .pipe(plugin({ package: 'test/fixtures/package.json', }))
+        .pipe(plugin({ src: 'test/fixtures/source.json', }))
         .on('error', function (err) {
           err.message.should.eql('Invalid config file: Not a valid JSON');
           done();
@@ -43,7 +43,7 @@ describe('gulp-config-sync', function() {
 
     it('should sync config file', function(done) {
       gulp.src(path.join(__dirname, 'fixtures', 'config.json'))
-        .pipe(plugin({ package: 'test/fixtures/package.json', }))
+        .pipe(plugin({ src: 'test/fixtures/source.json', }))
         .pipe(assert.first(function (d) {
           var config = JSON.parse(d.contents.toString());
           config.should.have.property('name', 'name1');
@@ -59,7 +59,7 @@ describe('gulp-config-sync', function() {
 
     it('should sync empty config file', function(done) {
       gulp.src(path.join(__dirname, 'fixtures', 'config-empty.json'))
-        .pipe(plugin({ package: 'test/fixtures/package.json', }))
+        .pipe(plugin({ src: 'test/fixtures/source.json', }))
         .pipe(assert.first(function (d) {
           var config = JSON.parse(d.contents.toString());
           config.should.have.property('name', 'name1');
@@ -75,7 +75,7 @@ describe('gulp-config-sync', function() {
 
     it('should create non existing file', function(done) {
       gulp.src(path.join(__dirname, 'fixtures', 'i-dont-exist.json'))
-        .pipe(plugin({ package: 'test/fixtures/package.json', }))
+        .pipe(plugin({ src: 'test/fixtures/source.json', }))
         .pipe(assert.first(function (d) {
           var config = JSON.parse(d.contents.toString());
           config.should.have.property('name', 'name1');

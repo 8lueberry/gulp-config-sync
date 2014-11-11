@@ -6,6 +6,8 @@
 
 By default, package.json is used as the source of truth but you can specify any source and any fields you want to synchronize.
 
+Only the fields specified are synchronized. The other fields are left untouched.
+
 ## Gulp
 
 This is a plugin for [gulp 3](http://gulpjs.com/).
@@ -26,7 +28,7 @@ In your `gulpfile.js`
 var sync = require('gulp-config-sync');
 
 gulp.task('sync', function() {
-  return gulp.src('bower.json')
+  return gulp.src(['bower.json', 'component.json'])
     .pipe(sync())
     .pipe(gulp.dest('.')); // write it to the same dir
 });

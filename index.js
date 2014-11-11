@@ -19,6 +19,7 @@ var defaultOptions = {
     'version',
     'description',
     'keywords',
+    'license',
   ],
   space: '  ',
 };

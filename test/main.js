@@ -73,17 +73,16 @@ describe('gulp-config-sync', function() {
         .pipe(assert.end(done));
     });
 
-    it('should create non existing file', function(done) {
-      gulp.src(path.join(__dirname, 'fixtures', 'i-dont-exist.json'))
-        .pipe(plugin({ src: 'test/fixtures/source.json', }))
+    it('should sync empty source field', function(done) {
+      gulp.src(path.join(__dirname, 'fixtures', 'config-empty.json'))
+        .pipe(plugin({ src: 'test/fixtures/source-min.json', }))
         .pipe(assert.first(function (d) {
           var config = JSON.parse(d.contents.toString());
           config.should.have.property('name', 'name1');
-          config.should.have.property('description', 'description1');
           config.should.have.property('version', 'version1');
-          config.should.have.property('keywords').with.lengthOf(2);
-          config.keywords[0].should.equal('keyword1');
-          config.keywords[1].should.equal('keyword2');
+
+          config.should.not.have.property('description', '');
+          config.should.not.have.property('keywords', '');
 
         }))
         .pipe(assert.end(done));

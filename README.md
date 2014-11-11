@@ -28,7 +28,7 @@ In your `gulpfile.js`
 var sync = require('gulp-config-sync');
 
 gulp.task('sync', function() {
-  return gulp.src(['bower.json', 'component.json'])
+  gulp.src(['bower.json', 'component.json'])
     .pipe(sync())
     .pipe(gulp.dest('.')); // write it to the same dir
 });

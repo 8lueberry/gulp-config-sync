@@ -1,11 +1,14 @@
 #gulp-config-sync
+
 [![NPM version](https://badge.fury.io/js/gulp-config-sync.svg)](http://badge.fury.io/js/gulp-config-sync)
 
-> Synchronize config fields among package configs (package.json, bower.json, component.js...)
+> Synchronize version, name, description, keywords... in each config file (package.json, bower.json, component.js...).
+
+By default, package.json is used as the source of truth but you can specify any source and any fields you want to synchronize.
 
 ## Gulp
 
-Requires [gulp 3](http://gulpjs.com/)
+This is a plugin for [gulp 3](http://gulpjs.com/).
 
 
 ## Usage
@@ -29,7 +32,7 @@ gulp.task('sync', function() {
 });
 ```
 
-You can run the new task
+You can run the new task in the termininal
 ```sh
 $ gulp sync
 ```

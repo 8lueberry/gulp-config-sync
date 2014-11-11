@@ -1,7 +1,7 @@
 {
   "name": "gulp-config-sync",
   "version": "0.0.1",
-  "description": "Synchronize config fields among package configs (package.json, bower.json, component.js...)",
+  "description": "Synchronize version, name, description, keywords... in each config file (package.json, bower.json, component.js...).",
   "main": "index.js",
   "scripts": {
     "test": "mocha"

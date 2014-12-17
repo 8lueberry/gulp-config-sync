@@ -57,7 +57,7 @@ gulp.task('default', ['sync']);
     'version',
     'description',
     'keywords',
-    {form: 'contributors', to: 'authors'}
+    {from: 'contributors', to: 'authors'}
   ]`
   - Specifies the fields to be synchronized
 

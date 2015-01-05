@@ -74,8 +74,7 @@ function syncConfig(file, opts, cb) {
     _.forEach(opts.fields, function(field) {
       if (_.isObject(field)) {
         configObj[field.to] = srcObj[field.from];
-      }
-      else {
+      } else {
         configObj[field] = srcObj[field];
       }
     });

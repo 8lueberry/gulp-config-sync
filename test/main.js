@@ -88,5 +88,23 @@ describe('gulp-config-sync', function() {
         .pipe(assert.end(done));
     });
 
+    it('should sync custom fields', function(done) {
+      gulp.src(path.join(__dirname, 'fixtures', 'config-empty.json'))
+        .pipe(plugin({
+          src: 'test/fixtures/source.json',
+          fields: [
+            {
+              from: 'contributors',
+              to: 'authors',
+            },
+          ],
+        }))
+        .pipe(assert.first(function (d) {
+          var config = JSON.parse(d.contents.toString());
+          config.should.have.property('authors', ['author2', 'author3']);
+        }))
+        .pipe(assert.end(done));
+    });
+
   });
 });

@@ -73,6 +73,10 @@ var options = {
     'name',
     'version',
     'description',
+    {
+      from: 'contributors',
+      to: 'authors',
+    },
   ],
   space: '    ',
 };

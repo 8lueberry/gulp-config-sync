@@ -8,5 +8,9 @@
     "keyword2"
   ],
   "author": "author1",
+  "contributors": [
+    "author2",
+    "author3"
+  ],
   "license": "license1"
 }

@@ -72,7 +72,11 @@ function syncConfig(file, opts, cb) {
     }
 
     _.forEach(opts.fields, function(field) {
-      configObj[field] = srcObj[field];
+      if (_.isObject(field)) {
+        configObj[field.to] = srcObj[field.from];
+      } else {
+        configObj[field] = srcObj[field];
+      }
     });
 
     return JSON.stringify(configObj, null, opts.space);

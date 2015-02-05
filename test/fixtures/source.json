@@ -12,5 +12,9 @@
     "author2",
     "author3"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/foo/bar.git"
+  },
   "license": "license1"
 }

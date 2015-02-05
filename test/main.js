@@ -52,6 +52,10 @@ describe('gulp-config-sync', function() {
           config.should.have.property('keywords').with.lengthOf(2);
           config.keywords[0].should.equal('keyword1');
           config.keywords[1].should.equal('keyword2');
+          config.should.have.property('repository');
+          config.repository.should.have.property('type', 'git');
+          config.repository.should.have.property('url', 'git://github.com/foo/bar.git');
+
 
         }))
         .pipe(assert.end(done));

@@ -20,6 +20,7 @@ var defaultOptions = {
     'description',
     'keywords',
     'license',
+    'repository',
   ],
   space: '  ',
 };

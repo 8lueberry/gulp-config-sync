@@ -110,5 +110,19 @@ describe('gulp-config-sync', function() {
         .pipe(assert.end(done));
     });
 
+    it('should not sync unwanted fields', function(done) {
+      gulp.src(path.join(__dirname, 'fixtures', 'config-empty.json'))
+        .pipe(plugin({
+          src: 'test/fixtures/source.json',
+          fields: ['name', 'version'],
+        }))
+        .pipe(assert.first(function (d) {
+          var config = JSON.parse(d.contents.toString());
+          config.should.not.have.property('license');
+          config.should.not.have.property('repository');
+        }))
+        .pipe(assert.end(done));
+    });
+
   });
 });

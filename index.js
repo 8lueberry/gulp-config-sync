@@ -29,7 +29,7 @@ var defaultOptions = {
  * Plugin function
  */
 function plugin(options) {
-  var opts = _.merge({}, defaultOptions, options);
+  var opts = _.assign({}, defaultOptions, options);
 
   // creating a stream through which each file will pass
   var stream = through.obj(function(file, enc, cb) {
